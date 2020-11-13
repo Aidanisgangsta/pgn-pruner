@@ -1,6 +1,7 @@
 import os 
 import sys
 from chess import pgn
+import re
 
 def pgn_getter():
     """
@@ -65,12 +66,16 @@ def remove_spaces(pgn_dir: str) -> str:
 
     return stripped
 
-def remove_comments():
+def remove_comments(pgn):
     """
     A function which removes all comments from the pgn.\n
 
     Removes all data between curly brackets { }
     """
+
+    removed_comments = re.sub(r"\s*{.*}\s*", " ", pgn)
+
+    print(removed_comments)
 
 def pruner():
     """
