@@ -24,7 +24,7 @@ def pgn_getter():
             pgn_location = remove_spaces(raw_pgn_location)
 
             if os.path.isfile(pgn_location) == True:
-                with open(raw_pgn_location, "r") as pgn:
+                with open(pgn_location, "r") as pgn:
                     pgn_text = pgn.read(pgn)
                     print(pgn_text)
                 break
