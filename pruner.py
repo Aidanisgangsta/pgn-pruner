@@ -1,5 +1,6 @@
 import os 
 import sys
+from chess import pgn
 
 def pgn_getter():
     """
@@ -18,13 +19,14 @@ def pgn_getter():
             pgn_text = input("Please past pgn here:\n")
             break
         elif path == 2:
-            raw_pgn_location = input("Enter location your pgn:\n")
+            raw_pgn_location = input("Enter the location to your pgn:\n")
             #Removes space from directory name
             pgn_location = remove_spaces(raw_pgn_location)
 
             if os.path.isfile(pgn_location) == True:
-                with open(raw_pgn_location) as pgn:
-                    print(pgn)
+                with open(raw_pgn_location, "r") as pgn:
+                    pgn_text = pgn.read(pgn)
+                    print(pgn_text)
                 break
   
 def move_to_prune():
@@ -38,16 +40,26 @@ def move_to_prune():
 
     max_moves = input("How many moves would you like to prune too? ")
 
-def remove_spaces(dir: str) -> str:
+def remove_spaces(pgn_dir: str) -> str:
     """
     A simple function which removes all spaces in a give directory.\n
 
     This is so the directory name given is accurate and can be found by the program.
     """
 
-    #Removes all white space
-    stripped = dir.strip()
-    
+    dir_chars = []
+
+    #Converts the directory into a list
+    for i in range(len(pgn_dir)):
+        dir_chars.append(pgn_dir[i])
+
+    #Checks whether the the first character is blank or if any characters are spaces 
+    if dir_chars[0] == '\u202a':
+        dir_chars.pop(0)
+
+    stripped = "".join(dir_chars)
+    print(stripped)
+
     return stripped
 
 def main():
