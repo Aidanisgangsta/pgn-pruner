@@ -1,6 +1,5 @@
 import os 
 import sys
-import sentence
 
 def pgn_getter():
     """
@@ -12,29 +11,30 @@ def pgn_getter():
       - The file is then retrieved and the pgn converted into plain text where it is stored under a variable.
      - If the enter a pgn as text, it is stored under a variable.
     """
+
     while True:
         path = int(input("Press 1 to past a pgn as plain text or press 2 to enter an address to a pgn\n"))
         if path == 1:
             pgn_text = input("Please past pgn here:\n")
             break
         elif path == 2:
-            pgn_location = input("Enter location your pgn:\n")
+            raw_pgn_location = input("Enter location your pgn:\n")
             #Removes space from directory name
-            remove_spaces(pgn_location)
-            print(os.path.isfile(pgn_location))
+            pgn_location = remove_spaces(raw_pgn_location)
 
-            if os.path.isfile(pgn_location):
-                print(os.listdir(pgn_location))
+            if os.path.isfile(pgn_location) == True:
+                with open(raw_pgn_location) as pgn:
+                    print(pgn)
                 break
   
 def move_to_prune():
-    '''
+    """
     A function that prunes a pgn to a user defined number of moves.\n
 
     Will find the longest branch in the pgn and compare it to the user defined length they wish to prune to.
     If the lognest branch is shorter than the user difined value, they are asked to enter a smaller number.
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
-    '''
+    """
 
     max_moves = input("How many moves would you like to prune too? ")
 
@@ -44,7 +44,11 @@ def remove_spaces(dir: str) -> str:
 
     This is so the directory name given is accurate and can be found by the program.
     """
-    sentence.strip(dir)
+
+    #Removes all white space
+    stripped = dir.strip()
+    
+    return stripped
 
 def main():
     pgn_getter()
