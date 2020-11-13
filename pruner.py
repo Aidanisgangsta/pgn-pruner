@@ -24,21 +24,24 @@ def pgn_getter():
             pgn_location = remove_spaces(raw_pgn_location)
 
             if os.path.isfile(pgn_location) == True:
-                with open(pgn_location, "r") as pgn:
-                    pgn_text = pgn.read(pgn)
+                with open(pgn_location, "r") as pf:
+                    pgn_text = pgn.read_game(pf)
                     print(pgn_text)
                 break
+    return pgn_text
   
-def move_to_prune():
+def moves_to_prune() -> int:
     """
     A function that prunes a pgn to a user defined number of moves.\n
 
-    Will find the longest branch in the pgn and compare it to the user defined length they wish to prune to.
-    If the lognest branch is shorter than the user difined value, they are asked to enter a smaller number.
+    Finds the longest branch in the pgn and compares it the the user entered value.
+    If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
-    max_moves = input("How many moves would you like to prune too? ")
+    max_moves = int(input("How many moves would you like to prune too? "))
+
+    return max_moves
 
 def remove_spaces(pgn_dir: str) -> str:
     """
@@ -62,8 +65,25 @@ def remove_spaces(pgn_dir: str) -> str:
 
     return stripped
 
+def remove_comments():
+    """
+    A function which removes all comments from the pgn.\n
+
+    Removes all data between curly brackets { }
+    """
+
+def pruner():
+    """
+    The function that prunes a pgn to the user defined number of moves.\n
+
+    Will find the longest branch in the pgn and compare it to the user defined length they wish to prune to.
+    If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
+    Provided that the user input is positive, non 0 and an iteger, the program will then continue.
+    """
+
 def main():
-    pgn_getter()
-    move_to_prune()
+    pgn_text = pgn_getter()
+    max_moves = moves_to_prune()
+    pgn_text = remove_comments(pgn_text)
 
 main()
