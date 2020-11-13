@@ -57,8 +57,8 @@ def remove_spaces(pgn_dir: str) -> str:
     if dir_chars[0] == '\u202a':
         dir_chars.pop(0)
 
+    #Joins all characters in the array 
     stripped = "".join(dir_chars)
-    print(stripped)
 
     return stripped
 
