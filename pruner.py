@@ -66,16 +66,24 @@ def remove_spaces(pgn_dir: str) -> str:
 
     return stripped
 
-def remove_comments(pgn):
+def clean_pgn(pgn):
     """
-    A function which removes all comments from the pgn.\n
+    A function which cleans the pgn of all unnecessary data.\n
 
-    Removes all data between curly brackets { }
+    Removes:
+     - Comments
+     - Tags
     """
+    def remove_comments():
+        """
+        A function which removes all comments from the pgn.\n
 
-    removed_comments = re.sub(r"\s*{.*}\s*", " ", pgn)
+        Removes all data between curly brackets { }
+        """
 
-    print(removed_comments)
+        removed_comments = re.sub(r"\s*{.*}\s*", " ", pgn)
+
+        print(removed_comments)
 
 def pruner():
     """
@@ -89,6 +97,6 @@ def pruner():
 def main():
     pgn_text = pgn_getter()
     max_moves = moves_to_prune()
-    pgn_text = remove_comments(pgn_text)
+    pgn_text = clean_pgn(pgn_text)
 
 main()
