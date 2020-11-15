@@ -2,6 +2,7 @@ import os
 import sys
 from chess import pgn
 import re
+import keyboard
 
 def pgn_getter():
     """
@@ -14,17 +15,30 @@ def pgn_getter():
      - If the enter a pgn as text, it is stored under a variable.
     """
 
+    pgn_lines = []
+
     while True:
         path = int(input("Press 1 to past a pgn as plain text or press 2 to enter an address to a pgn\n"))
         if path == 1:
-            pgn_text = input("Please past pgn here:\n")
+            print("Paste you pgn here:")
+            #Creates a list of all the lines in the pgn
+            while True:
+                line = input()
+                pgn_lines.append(line)
+                #When the user presses enter the loop breaks
+                if keyboard.is_pressed('enter'):
+                    break
+                #Joines the list of all the lines of the pgn to creates a single string
+            pgn_text = " ".join(pgn_lines)
             break
+
         elif path == 2:
             raw_pgn_location = input("Enter the location to your pgn:\n")
             #Removes space from directory name
             pgn_location = remove_spaces(raw_pgn_location)
 
             if os.path.isfile(pgn_location) == True:
+                #Opens pgn and reads as text
                 with open(pgn_location, "r") as pf:
                     pgn_text = pgn.read_game(pf)
                     print(pgn_text)
@@ -40,7 +54,15 @@ def moves_to_prune() -> int:
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
-    max_moves = int(input("How many moves would you like to prune too? "))
+    while True:
+        max_moves = int(input("How many moves would you like to prune to? "))
+        if max_moves > 0:
+            if type(max_moves) == int:
+                break
+            else:
+                print("Please enter an integer\n")
+        else:
+            print("Please entere and integer that is greater than 0\n")
 
     return max_moves
 
@@ -84,6 +106,9 @@ def clean_pgn(pgn):
         removed_comments = re.sub(r"\s*{.*}\s*", " ", pgn)
 
         print(removed_comments)
+
+    def remove_tage():
+        pass
 
 def pruner():
     """
