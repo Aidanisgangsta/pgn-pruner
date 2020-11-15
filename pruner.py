@@ -28,7 +28,7 @@ def pgn_getter():
                 #When the user presses enter the loop breaks
                 if keyboard.is_pressed('enter'):
                     break
-                #Joines the list of all the lines of the pgn to creates a single string
+            #Joins the list of all the lines of the pgn to creates a single string
             pgn_text = " ".join(pgn_lines)
             break
 
@@ -107,7 +107,7 @@ def clean_pgn(pgn):
 
         print(removed_comments)
 
-    def remove_tage():
+    def remove_tags():
         pass
 
 def pruner():
