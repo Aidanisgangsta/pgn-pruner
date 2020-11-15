@@ -4,7 +4,7 @@ from chess import pgn
 import re
 import keyboard
 
-def pgn_getter():
+def pgn_getter() -> str:
     """
     A function which prompts the user to either paste a pgn as text or to enter the directory of a pgn file.\n
 
@@ -20,7 +20,7 @@ def pgn_getter():
     while True:
         path = int(input("Press 1 to past a pgn as plain text or press 2 to enter an address to a pgn\n"))
         if path == 1:
-            print("Paste you pgn here:")
+            print("Paste your pgn here:")
             #Creates a list of all the lines in the pgn
             while True:
                 line = input()
@@ -43,6 +43,7 @@ def pgn_getter():
                     pgn_text = pgn.read_game(pf)
                     print(pgn_text)
                 break
+
     return pgn_text
   
 def moves_to_prune() -> int:
@@ -55,14 +56,14 @@ def moves_to_prune() -> int:
     """
 
     while True:
-        max_moves = int(input("How many moves would you like to prune to? "))
-        if max_moves > 0:
-            if type(max_moves) == int:
+        max_moves = input("How many moves would you like to prune to? ")
+        if is_int(max_moves) == True:
+            if int(max_moves) > 0:            
                 break
             else:
-                print("Please enter an integer\n")
+                print("Please enter and integer that is greater than 0")
         else:
-            print("Please entere and integer that is greater than 0\n")
+            print("Please enter an integer")
 
     return max_moves
 
@@ -118,6 +119,19 @@ def pruner():
     If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
+
+def is_int(s: str) -> bool:
+    """
+    A simple function used to check whether a string is an integer.\n
+
+    Will return true if the string is an integer, false otherwise.
+    """
+
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
 
 def main():
     pgn_text = pgn_getter()
