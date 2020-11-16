@@ -19,6 +19,7 @@ def pgn_getter() -> str:
 
     while True:
         path = int(input("Press 1 to past a pgn as plain text or press 2 to enter an address to a pgn\n"))
+
         if path == 1:
             print("Paste your pgn here:")
             #Creates a list of all the lines in the pgn
@@ -46,6 +47,28 @@ def pgn_getter() -> str:
 
     return pgn_text
 
+def remove_spaces(pgn_dir: str) -> str:
+    """
+    A simple function which removes all spaces in a given directory name.\n
+
+    This is so the directory name given is accurate and can be found by the program.
+    """
+
+    dir_chars = []
+
+    #Converts the directory into a list
+    for i in range(len(pgn_dir)):
+        dir_chars.append(pgn_dir[i])
+
+    #Checks whether the the first character is blank or if any characters are spaces 
+    if dir_chars[0] == '\u202a':
+        dir_chars.pop(0)
+
+    #Joins all characters in the array 
+    stripped = "".join(dir_chars)
+
+    return stripped
+
 def moves_to_prune(pgn: str) -> int:
     """
     A function that prunes a pgn to a user defined number of moves.\n
@@ -55,7 +78,7 @@ def moves_to_prune(pgn: str) -> int:
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
-    def longest_move(pgn: str) -> int:
+    def longest_move() -> int:
         """
         A function which finds the longest line in the pgn.
 
@@ -80,28 +103,6 @@ def moves_to_prune(pgn: str) -> int:
             print("Please enter an integer")
 
     return max_moves
-
-def remove_spaces(pgn_dir: str) -> str:
-    """
-    A simple function which removes all spaces in a given directory name.\n
-
-    This is so the directory name given is accurate and can be found by the program.
-    """
-
-    dir_chars = []
-
-    #Converts the directory into a list
-    for i in range(len(pgn_dir)):
-        dir_chars.append(pgn_dir[i])
-
-    #Checks whether the the first character is blank or if any characters are spaces 
-    if dir_chars[0] == '\u202a':
-        dir_chars.pop(0)
-
-    #Joins all characters in the array 
-    stripped = "".join(dir_chars)
-
-    return stripped
 
 def clean_pgn(pgn: str) -> str:
     """
