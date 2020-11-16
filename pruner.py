@@ -98,8 +98,6 @@ def clean_pgn(pgn: str) -> str:
 
         removed_tags = re.sub(r"\[((.|\n)*?)\]", "", pgn)
 
-        
-        print(removed_tags)
         return removed_tags
 
     pgn = remove_comments()
@@ -123,12 +121,19 @@ def moves_to_prune(pgn: str) -> int:
         Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
         """
 
-        return 2 #make functioning
+        #Creates a list of all move numbers in the pgn
+        moves = re.findall(r'\d+\.', pgn)
+        #Creates a list of just the numbers (removes fullstops)
+        integers = [int(x[:-1]) for x in moves]
 
-    longest_line = longest_move(pgn)
+        longest_line = max(integers)
+
+        return longest_line
+
+    longest_line = longest_move()
 
     while True:
-        max_moves = input("How many moves would you like to prune to? ")
+        max_moves = input("\nHow many moves would you like to prune to? ")
         if is_int(max_moves) == True:
             if int(max_moves) > 0: 
                 if int(max_moves) < longest_line:
@@ -142,7 +147,7 @@ def moves_to_prune(pgn: str) -> int:
 
     return max_moves
 
-def pruner():
+def pruner(pgn: str, prune_num: int):
     """
     The function that prunes a pgn to the user defined number of moves.\n
 
@@ -168,5 +173,6 @@ def main():
     pgn_text = pgn_getter()
     pgn_text = clean_pgn(pgn_text)
     prune_number = moves_to_prune(pgn_text)
+    shortened_pgn = pruner(pgn_text, prune_number)
 
 main()
