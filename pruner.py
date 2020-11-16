@@ -55,6 +55,15 @@ def moves_to_prune(pgn: str) -> int:
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
+    def longest_move(pgn: str) -> int:
+        """
+        A function which finds the longest line in the pgn.
+
+        Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
+        """
+
+        return 2 #make functioning
+
     longest_line = longest_move(pgn)
 
     while True:
@@ -71,13 +80,6 @@ def moves_to_prune(pgn: str) -> int:
             print("Please enter an integer")
 
     return max_moves
-
-    def longest_move(pgn: str) -> int:
-        """
-        A function which finds the longest line in the pgn.
-
-        Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
-        """
 
 def remove_spaces(pgn_dir: str) -> str:
     """
@@ -101,7 +103,7 @@ def remove_spaces(pgn_dir: str) -> str:
 
     return stripped
 
-def clean_pgn(pgn):
+def clean_pgn(pgn: str) -> str:
     """
     A function which cleans the pgn of all unnecessary data.\n
 
@@ -109,19 +111,35 @@ def clean_pgn(pgn):
      - Comments
      - Tags
     """
+
     def remove_comments():
         """
         A function which removes all comments from the pgn.\n
 
-        Removes all data between curly brackets { }
+        Removes all data between curly brackets { }.
         """
 
-        removed_comments = re.sub(r"\s*{.*}\s*", " ", pgn)
+        removed_comments = re.sub(r"\{((.|\n)*?)\}", "", pgn)
 
-        print(removed_comments)
+        return removed_comments
 
     def remove_tags():
-        pass
+        """
+        A function which removes all tags from the pgn.\n
+
+        Removes all data between square brackets [ ].
+        """
+
+        removed_tags = re.sub(r"\[((.|\n)*?)\]", "", pgn)
+
+        
+        print(removed_tags)
+        return removed_tags
+
+    pgn = remove_comments()
+    pgn = remove_tags()
+
+    return pgn
 
 def pruner():
     """
@@ -148,6 +166,7 @@ def is_int(s: str) -> bool:
 def main():
     pgn_text = pgn_getter()
     pgn_text = clean_pgn(pgn_text)
+    print(pgn_text)
     prune_number = moves_to_prune(pgn_text)
 
 main()
