@@ -45,21 +45,26 @@ def pgn_getter() -> str:
                 break
 
     return pgn_text
-  
-def moves_to_prune() -> int:
+
+def moves_to_prune(pgn: str) -> int:
     """
     A function that prunes a pgn to a user defined number of moves.\n
 
-    Finds the longest branch in the pgn and compares it the the user entered value.
+    Uses the value from longest_move and compares to the user entered value.
     If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
+    longest_line = longest_move(pgn)
+
     while True:
         max_moves = input("How many moves would you like to prune to? ")
         if is_int(max_moves) == True:
-            if int(max_moves) > 0:            
-                break
+            if int(max_moves) > 0: 
+                if int(max_moves) < longest_line:
+                    break
+                else:
+                    print(f"Please pick a number that is less than {longest_line}")    
             else:
                 print("Please enter and integer that is greater than 0")
         else:
@@ -67,9 +72,16 @@ def moves_to_prune() -> int:
 
     return max_moves
 
+    def longest_move(pgn: str) -> int:
+        """
+        A function which finds the longest line in the pgn.
+
+        Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
+        """
+
 def remove_spaces(pgn_dir: str) -> str:
     """
-    A simple function which removes all spaces in a give directory.\n
+    A simple function which removes all spaces in a given directory name.\n
 
     This is so the directory name given is accurate and can be found by the program.
     """
@@ -135,7 +147,7 @@ def is_int(s: str) -> bool:
 
 def main():
     pgn_text = pgn_getter()
-    max_moves = moves_to_prune()
     pgn_text = clean_pgn(pgn_text)
+    prune_number = moves_to_prune(pgn_text)
 
 main()
