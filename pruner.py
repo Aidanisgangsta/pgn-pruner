@@ -69,41 +69,6 @@ def remove_spaces(pgn_dir: str) -> str:
 
     return stripped
 
-def moves_to_prune(pgn: str) -> int:
-    """
-    A function that prunes a pgn to a user defined number of moves.\n
-
-    Uses the value from longest_move and compares to the user entered value.
-    If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
-    Provided that the user input is positive, non 0 and an iteger, the program will then continue.
-    """
-
-    def longest_move() -> int:
-        """
-        A function which finds the longest line in the pgn.
-
-        Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
-        """
-
-        return 2 #make functioning
-
-    longest_line = longest_move(pgn)
-
-    while True:
-        max_moves = input("How many moves would you like to prune to? ")
-        if is_int(max_moves) == True:
-            if int(max_moves) > 0: 
-                if int(max_moves) < longest_line:
-                    break
-                else:
-                    print(f"Please pick a number that is less than {longest_line}")    
-            else:
-                print("Please enter and integer that is greater than 0")
-        else:
-            print("Please enter an integer")
-
-    return max_moves
-
 def clean_pgn(pgn: str) -> str:
     """
     A function which cleans the pgn of all unnecessary data.\n
@@ -142,6 +107,41 @@ def clean_pgn(pgn: str) -> str:
 
     return pgn
 
+def moves_to_prune(pgn: str) -> int:
+    """
+    A function that prunes a pgn to a user defined number of moves.\n
+
+    Uses the value from longest_move and compares to the user entered value.
+    If the longest branch is shorter than the user difined value, they are asked to enter a smaller number.
+    Provided that the user input is positive, non 0 and an iteger, the program will then continue.
+    """
+
+    def longest_move() -> int:
+        """
+        A function which finds the longest line in the pgn.
+
+        Finds the longest branch in the pgn by removing all non integer values and convering the remaining values into a list.
+        """
+
+        return 2 #make functioning
+
+    longest_line = longest_move(pgn)
+
+    while True:
+        max_moves = input("How many moves would you like to prune to? ")
+        if is_int(max_moves) == True:
+            if int(max_moves) > 0: 
+                if int(max_moves) < longest_line:
+                    break
+                else:
+                    print(f"Please pick a number that is less than {longest_line}")    
+            else:
+                print("Please enter and integer that is greater than 0")
+        else:
+            print("Please enter an integer")
+
+    return max_moves
+
 def pruner():
     """
     The function that prunes a pgn to the user defined number of moves.\n
@@ -167,7 +167,6 @@ def is_int(s: str) -> bool:
 def main():
     pgn_text = pgn_getter()
     pgn_text = clean_pgn(pgn_text)
-    print(pgn_text)
     prune_number = moves_to_prune(pgn_text)
 
 main()
