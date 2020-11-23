@@ -4,7 +4,13 @@ pgn-pruner takes a directory of a pgn or a pgn as plain text.
 
 All the tags and comments are removed from the file to simplify and condense the file as much as possible.
 
-It then asks the user to see how long you want the longest line in the pgn to be.
+Asks the user for how many moves they would like to prune the pgn to.
+
+Once the pgn has been pruned, it will return the pruned pgn for the user to download or copy.
+
+# How it works
+
+It asks the user to see how long you want the longest line in the pgn to be.
 - It makes sure the user input is greater than 0 and an integer
     - If it is not it will ask the user to re enter a value
 - It finds the longest line in the pgn.
