@@ -12,4 +12,4 @@ It then asks the user to see how long you want the longest line in the pgn to be
     - If the user entered value is greater than the longest line, they are asked to re neter a value.
     - If the user entered value is less than the longest line, the progam continues.
 
-The program the removes all lines which are longer than the user entered value and will either print the pgn as plain text or create a new file containing the pgn.
+The program then removes all lines which are longer than the user entered value and will either print the pgn as plain text or create a new file containing the pgn.
