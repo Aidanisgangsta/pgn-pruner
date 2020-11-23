@@ -42,7 +42,8 @@ def pgn_getter() -> str:
                 #Opens pgn and reads as text
                 with open(pgn_location, "r") as pf:
                     pgn_text = pgn.read_game(pf)
-                    print(pgn_text)
+                    #Converts pgn to type string
+                    pgn_text = str(pgn_text)
                 break
 
     return pgn_text
@@ -100,8 +101,20 @@ def clean_pgn(pgn: str) -> str:
 
         return removed_tags
 
+    def remove_line_breaks():
+        """
+        A function that removes all line breaks from remoing the comments.\n
+
+        Removes all line breaks to a blank character ("").
+        """
+
+        removed_line_breaks = pgn.replace("\n", "")
+
+        return removed_line_breaks
+
     pgn = remove_comments()
     pgn = remove_tags()
+    pgn = remove_line_breaks()
 
     return pgn
 
