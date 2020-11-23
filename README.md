@@ -11,8 +11,8 @@ Once the pgn has been pruned, it will return the pruned pgn for the user to down
 # How it works
 
 It asks the user to see how long you want the longest line in the pgn to be.
-- It makes sure the user input is greater than 0 and an integer
-    - If it is not it will ask the user to re enter a value
+- It makes sure the user input is greater than 0 and an integer.
+    - If it is not it will ask the user to re enter a value.
 - It finds the longest line in the pgn.
 - It then compares this to the user entered value.
     - If the user entered value is greater than the longest line, they are asked to re neter a value.
