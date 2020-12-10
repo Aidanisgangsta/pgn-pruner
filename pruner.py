@@ -1,5 +1,4 @@
 import os 
-import sys
 from chess import pgn
 import re
 import keyboard
@@ -169,25 +168,8 @@ def pruner(pgn: str, prune_num: int):
     Provided that the user input is positive, non 0 and an iteger, the program will then continue.
     """
 
-    def prune_brackets():
-        """
-        A function that prunes the pgn inside the brackets (alternative lines).\n
-
-         - If the brackets contain only moves longer than the give number, it will remove the whole bracket.
-         - If the brackets contain moves that are longer and shorter than the given number, it will only remove the larger moves.
-         - If the brackets contain only moves that are shorter than the given number, it will not remove anything.
-        """
-
-        pass
-
-    def prune_mainline():
-        """
-        A function that prunes the mainline from the pgn.\n\
-
-        It will remove all moves that are longer than the given number.
-        """
-
-        pass
+    pgn_split = pgn.split(" ")
+    print(pgn_split)
 
 def is_int(s: str) -> bool:
     """
@@ -209,3 +191,6 @@ def main():
     shortened_pgn = pruner(pgn_text, prune_number)
 
 main()
+
+# ?Useful regex statements
+#[1-9][0-9]{0,2}\.
