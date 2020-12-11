@@ -194,3 +194,4 @@ main()
 
 # ?Useful regex statements
 #[1-9][0-9]{0,2}\.
+#\(.*?\)|(\S{1,7})
