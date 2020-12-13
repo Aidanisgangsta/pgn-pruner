@@ -13,3 +13,18 @@ def bracket_pairs(ex):
 
     for bracket in ex:
         lst.append(bracket)
+    
+    open_brackets = []
+    close_brackets = []
+    brackets = []
+
+    for index, item in enumerate(lst):
+        #Finds the location of all the open brackets
+        if item[:1] == "(":
+            open_brackets.append(index)
+            brackets.append(index)
+        #Fidns the location of all the close brackets
+        elif item[:1] == ")":
+            close_brackets.append(index)
+            brackets.append(index)
+
