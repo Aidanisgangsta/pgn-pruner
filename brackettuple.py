@@ -28,3 +28,11 @@ def bracket_pairs(ex):
             close_brackets.append(index)
             brackets.append(index)
 
+
+    for index in brackets:
+        if index in open_brackets:
+            pass
+        elif index in close_brackets:
+            pass
+
+bracket_pairs(e2)
