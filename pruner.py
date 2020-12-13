@@ -179,6 +179,17 @@ def pruner(pgn: str, prune_num: int):
 
     pgn_split = new_pgn
 
+    new_pgn = []
+    open_brackets = []
+    close_brackets = []
+    for index, item in enumerate(pgn_split):
+        #Finds the location of all the open brackets
+        if item[:1] == ")":
+            open_brackets.append(index)
+        #Fidns the location of all the close brackets
+        elif item[:1] == "(":
+            close_brackets.append(index)
+
     with open("pgn.txt", "w") as f:
         f.truncate(0)
         f.write(pgn)
