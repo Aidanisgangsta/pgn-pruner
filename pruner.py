@@ -178,6 +178,10 @@ def pruner(pgn: str, prune_num: int):
     #Creates a new list which contains all items that are not "" or " "
     new_pgn = [i for i in pgn_split if i != "" and i != " "]
 
+    pgn_split = new_pgn
+    with open("pgn.txt", "w") as f:
+        f.truncate(0)
+        f.write(pgn)
 
 def is_int(s: str) -> bool:
     """
