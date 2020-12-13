@@ -174,7 +174,10 @@ def pruner(pgn: str, prune_num: int):
     """
 
     pgn_split = pgn.split(" ")
-    print(pgn_split)
+
+    #Creates a new list which contains all items that are not "" or " "
+    new_pgn = [i for i in pgn_split if i != "" and i != " "]
+
 
 def is_int(s: str) -> bool:
     """
