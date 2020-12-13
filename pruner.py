@@ -107,12 +107,11 @@ def clean_pgn(pgn: str) -> str:
         Removes all line breaks to a blank character ("").
         """
 
-        #Removes all line breaks (provided there is 4 or less)
-        # TODO Convert to loop
-        r1 = pgn.replace("\n", "")
-        r2 = r1.replace("\n", "")
-        r3 = r2.replace("\n", "")
-        removed_line_breaks = r3.replace("\n", "")
+        #Removes all line breaks
+        removed_line_breaks = pgn
+
+        for _ in range(100):
+            removed_line_breaks = removed_line_breaks.replace("\n", "")
             
         return removed_line_breaks
 
@@ -179,6 +178,7 @@ def pruner(pgn: str, prune_num: int):
     new_pgn = [i for i in pgn_split if i != "" and i != " "]
 
     pgn_split = new_pgn
+
     with open("pgn.txt", "w") as f:
         f.truncate(0)
         f.write(pgn)
