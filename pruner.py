@@ -182,13 +182,28 @@ def pruner(pgn: str, prune_num: int):
     new_pgn = []
     open_brackets = []
     close_brackets = []
+
     for index, item in enumerate(pgn_split):
         #Finds the location of all the open brackets
-        if item[:1] == ")":
+        if item[:1] == "(":
             open_brackets.append(index)
         #Fidns the location of all the close brackets
-        elif item[:1] == "(":
+        elif item[:1] == ")":
             close_brackets.append(index)
+
+    def bracker_pairs():
+        """
+        A function that will find the pairs of brackets in the pgn.\n
+
+        -Returns a list of tuples containing the pairs of array locations of the bracket pairs.
+        """
+
+        pass
+
+    bracket_count = 0
+    for index, item in enumerate(pgn_split):
+        if item[:1] == "(":
+            bracket_count += 1
 
     with open("pgn.txt", "w") as f:
         f.truncate(0)
