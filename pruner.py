@@ -107,8 +107,13 @@ def clean_pgn(pgn: str) -> str:
         Removes all line breaks to a blank character ("").
         """
 
-        removed_line_breaks = pgn.replace("\n", "")
-
+        #Removes all line breaks (provided there is 4 or less)
+        # TODO Convert to loop
+        r1 = pgn.replace("\n", "")
+        r2 = r1.replace("\n", "")
+        r3 = r2.replace("\n", "")
+        removed_line_breaks = r3.replace("\n", "")
+            
         return removed_line_breaks
 
     pgn = remove_comments()
