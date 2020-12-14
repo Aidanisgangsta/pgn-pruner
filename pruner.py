@@ -183,13 +183,34 @@ def pruner(pgn: str, prune_num: int):
     open_brackets = []
     close_brackets = []
 
+    open_brackets = []
+    close_brackets = []
+    brackets = []
+    tups = []    
+
     for index, item in enumerate(pgn_split):
         #Finds the location of all the open brackets
         if item[:1] == "(":
             open_brackets.append(index)
+            brackets.append(index)
         #Fidns the location of all the close brackets
-        elif item[:1] == ")":
+        elif item[-1] == ")":
             close_brackets.append(index)
+            brackets.append(index)
+
+    print(brackets)
+    print(open_brackets)
+    print(close_brackets)
+
+    open_bracket = []
+    for bracket in brackets:
+        if bracket in open_brackets:            
+            open_bracket.append(bracket)
+        elif bracket in close_brackets:
+            tups.append((open_bracket[-1], bracket))
+            open_bracket.pop(-1)
+
+    print(tups)
 
     def bracker_pairs():
         """
