@@ -29,8 +29,6 @@ def bracket_pairs(ex):
             close_brackets.append(index)
             brackets.append(index)
 
-    print(brackets)
-
     open_bracket =[]
     for bracket in brackets:
         if bracket in open_brackets:            
@@ -38,7 +36,5 @@ def bracket_pairs(ex):
         elif bracket in close_brackets:
             tups.append((open_bracket[-1], bracket))
             open_bracket.pop(-1)
-
-    print(tups)
 
 bracket_pairs(e2)
