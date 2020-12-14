@@ -17,6 +17,7 @@ def bracket_pairs(ex):
     open_brackets = []
     close_brackets = []
     brackets = []
+    tups = []    
 
     for index, item in enumerate(lst):
         #Finds the location of all the open brackets
@@ -28,11 +29,16 @@ def bracket_pairs(ex):
             close_brackets.append(index)
             brackets.append(index)
 
+    print(brackets)
 
-    for index in brackets:
-        if index in open_brackets:
-            pass
-        elif index in close_brackets:
-            pass
+    open_bracket =[]
+    for bracket in brackets:
+        if bracket in open_brackets:            
+            open_bracket.append(bracket)
+        elif bracket in close_brackets:
+            tups.append((open_bracket[-1], bracket))
+            open_bracket.pop(-1)
+
+    print(tups)
 
 bracket_pairs(e2)
