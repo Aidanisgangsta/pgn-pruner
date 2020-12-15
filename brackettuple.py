@@ -1,5 +1,5 @@
 e1 = "( ( ) ( ) ) ( ( ) ( ( ) ) ) ( )"
-e2 = "(()(())())"
+e2 = "0(1(2)(3(4)5)(6)7)"
 e3 = "( ( ( ) ( ( ) ( ) ) ) ( ( ) ( ) ) )"
 
 def bracket_pairs(ex):
@@ -11,8 +11,8 @@ def bracket_pairs(ex):
 
     lst = []
 
-    for bracket in ex:
-        lst.append(bracket)
+    for char in ex:
+        lst.append(char)
     
     open_brackets = []
     close_brackets = []
@@ -25,11 +25,11 @@ def bracket_pairs(ex):
             open_brackets.append(index)
             brackets.append(index)
         #Fidns the location of all the close brackets
-        elif item[:1] == ")":
+        elif item[-1] == ")":
             close_brackets.append(index)
             brackets.append(index)
 
-    open_bracket =[]
+    open_bracket = [] 
     for bracket in brackets:
         if bracket in open_brackets:            
             open_bracket.append(bracket)
