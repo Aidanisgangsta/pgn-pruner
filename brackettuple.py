@@ -24,11 +24,12 @@ def bracket_pairs(ex):
         if item[:1] == "(":
             open_brackets.append(index)
             brackets.append(index)
-        #Fidns the location of all the close brackets
+        #Finds the location of all the close brackets
         elif item[-1] == ")":
             close_brackets.append(index)
             brackets.append(index)
 
+    #Finds the bracket pairs
     open_bracket = [] 
     for bracket in brackets:
         if bracket in open_brackets:            
@@ -42,6 +43,12 @@ def bracket_pairs(ex):
     new_lst = []
 
     def create_list():
+        """
+        A function that sorts the nested brackets into nested lists.\n
+
+        e.g. a(b(c)d) -> [a, [b, [c], d]]
+        """
+
         for index, item in enumerate(lst):
             if any(index in tup for tup in tups):
                 for pos1, pos2 in tups:
