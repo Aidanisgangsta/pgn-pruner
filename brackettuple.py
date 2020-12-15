@@ -37,4 +37,22 @@ def bracket_pairs(ex):
             tups.append((open_bracket[-1], bracket))
             open_bracket.pop(-1)
 
+    tups = sorted(tups, key=lambda tup: tup[0])
+
+    new_lst = []
+
+    def create_list():
+        for index, item in enumerate(lst):
+            if any(index in tup for tup in tups):
+                for pos1, pos2 in tups:
+                    if index == pos1:
+                        new_lst.append([])
+                    elif index == pos2:
+                        new_lst.append([])
+            else:
+                new_lst.append(item)
+
+    create_list()
+    print(new_lst)
+
 bracket_pairs(e2)
