@@ -1,5 +1,7 @@
+import ast
+
 e1 = "( ( ) ( ) ) ( ( ) ( ( ) ) ) ( )"
-e2 = "0(1(2)(3(4)5)(6)7)"
+e2 = "0(1(2)(3(4)5)(6)789)0"
 e3 = "( ( ( ) ( ( ) ( ) ) ) ( ( ) ( ) ) )"
 
 def bracket_pairs(ex):
@@ -53,13 +55,19 @@ def bracket_pairs(ex):
             if any(index in tup for tup in tups):
                 for pos1, pos2 in tups:
                     if index == pos1:
-                        new_lst.append([])
+                        new_lst.append("[")
                     elif index == pos2:
-                        new_lst.append([])
+                        new_lst.append("]")
             else:
                 new_lst.append(item)
 
+        print(new_lst)
+        
+        list_string = "".join(new_lst)
+        print(list_string)
+
+        print()
+
     create_list()
-    print(new_lst)
 
 bracket_pairs(e2)
